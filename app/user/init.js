@@ -14,8 +14,9 @@ function initUser (app) {
     json: true
     })
     .then((data) => {
+      //localStorage.setItem('userToken', data.id_token);
       res.render('user/profile', {
-        email: data.id_token
+        email: req.body.email
       })
     })
     .catch((err) => {
@@ -31,7 +32,7 @@ function renderWelcome (req, res) {
 
 function renderProfile (req, res) {
   res.render('user/profile', {
-    email: req.user.email
+    email: req.body.email
   })
 }
 
