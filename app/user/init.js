@@ -5,18 +5,22 @@ function initUser (app) {
   app.get('/profile', renderProfile)
   app.post('/login', (req, res) => {  
   rp({
+    method: 'POST',
     uri: 'http://54.153.108.164/api/v1/tokens',
     body: {
-      email: 'surfdog86@gmail.com',
-      password: 'hang10'},
+      email: req.body.email,
+      password: req.body.password
+    },
     json: true
     })
     .then((data) => {
-      renderProfile
+      res.render('user/profile', {
+        email: data.id_token
+      })
     })
     .catch((err) => {
       console.log(err)
-      res.render('error')
+      res.render('user/welcome')
     })
   })
 }
