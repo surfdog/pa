@@ -1,28 +1,28 @@
 const rp = require('request-promise')
+const storage = require('node-persist')
 
 function initUser (app) {
+  storage.initSync();
   app.get('/', renderWelcome)
   app.get('/profile', renderProfile)
   app.post('/login', (req, res) => {  
-  rp({
-    method: 'POST',
-    uri: 'http://54.153.108.164/api/v1/tokens',
-    body: {
-      email: req.body.email,
-      password: req.body.password
-    },
-    json: true
-    })
-    .then((data) => {
-      //localStorage.setItem('userToken', data.id_token);
-      res.render('user/profile', {
-        email: req.body.email
+    rp({
+      method: 'POST',
+      uri: 'http://54.153.108.164/api/v1/tokens',
+      body: {
+        email: req.body.email,
+        password: req.body.password
+      },
+      json: true
       })
-    })
-    .catch((err) => {
-      console.log(err)
-      res.render('user/welcome')
-    })
+      .then((data) => {
+        storage.setItem('userToken', data.id_token)
+        renderProfile(req, res)
+      })
+      .catch((err) => {
+        console.log(err)
+        renderWelcome(req, res)
+      })
   })
 }
 
