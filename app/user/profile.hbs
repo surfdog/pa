@@ -2,7 +2,7 @@
 
 You successfully logged-in \o/
 
-<form method="post" action="http://localhost:3001/sso" class="inline" target="clinapps">
+<form method="post" action="{{sso_url}}" class="inline" target="clinapps">
   <input type="hidden" name="id_token" value="{{id_token}}">
   <button type="submit" name="" value="" class="link-button">
     Click here to sign on (using SSO) to Clinical Applications

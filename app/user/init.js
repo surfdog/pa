@@ -35,7 +35,8 @@ function renderWelcome (req, res) {
 function renderProfile (req, res) {
   res.render('user/profile', {
     email: req.body.email,
-    id_token: storage.getItem('userToken')
+    id_token: storage.getItem('userToken'),
+    sso_url: config.sso_url
   })
 }
 
