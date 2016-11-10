@@ -32,7 +32,8 @@ function renderWelcome (req, res) {
 
 function renderProfile (req, res) {
   res.render('user/profile', {
-    email: req.body.email
+    email: req.body.email,
+    id_token: storage.getItem('userToken')
   })
 }
 

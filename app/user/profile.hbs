@@ -2,6 +2,10 @@
 
 You successfully logged-in \o/
 
-<h3>This is the Provider Access software mock.</h3>
-Click here to sign on (using SSO) to <a href="http://clinapps.com:3001/sso?targetUrl=some-patient/12345/edit" target="clinapps">Clinical Applications</a>.<br />
+<form method="post" action="http://localhost:3001/sso" class="inline" target="clinapps">
+  <input type="hidden" name="id_token" value="{{id_token}}">
+  <button type="submit" name="" value="" class="link-button">
+    Click here to sign on (using SSO) to Clinical Applications
+  </button>
+</form>
 <iframe width="1024" height="768" name="clinapps"></iframe>
